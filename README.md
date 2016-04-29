@@ -23,7 +23,7 @@ This is a Docker Swarm bundle that also includes logging and monitoring. It is c
 
 Any of the services provided can be scaled out post-deployment. The charms support workload status, so it is recommended to run `watch juju status` to monitor the cluster coming up. After it is deployed you need to grab the credentials from the lead swarm node to control the cluster:
 
-    juju scp swarm/0:swarm_credentials.tar .juju scp swarm/0:swarm_credentials.tar .
+    juju scp swarm/0:swarm_credentials.tar .
     tar zxf swarm_credentials.tar
     cd swarm_credentials
     source enable.sh
