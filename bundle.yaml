@@ -72,7 +72,7 @@ machines:
     series: trusty
     constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=8192 root-disk=30720"
   "2":
-    series: precise
+    series: trusty
     constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=1740 root-disk=8192"
   "3":
     series: trusty
