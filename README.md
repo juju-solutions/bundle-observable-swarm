@@ -5,12 +5,12 @@
 This is a Docker Swarm bundle that also includes logging and monitoring. It is comprised of the following components and features:
 
 - Swarm (clustering engine)
-  - Two node starter cluster, tested up to 20 nodes  
+  - Two node starter cluster, supports up to 20 nodes  
   - TLS used for communication between nodes for security
   - ZFS used as a docker datastore for resiliance and performance
 - Consul (key-value and DNS)
   - Three node cluster for reliability
-- ElasticSearch stack
+- Elastic stack
    - Two nodes for ElasticSearch
    - One node for a Kibana dashboard
    - Beats on every Swarm and Consul node:
