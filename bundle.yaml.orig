@@ -1,12 +1,20 @@
 series: trusty
 services:
   filebeat:
+<<<<<<< Updated upstream
+    charm: "cs:~containers/trusty/filebeat-5"
+=======
     charm: "cs:trusty/filebeat-1"
+>>>>>>> Stashed changes
     annotations:
       "gui-x": "808.188"
       "gui-y": "426.512"
   topbeat:
+<<<<<<< Updated upstream
+    charm: "cs:~containers/trusty/topbeat-8"
+=======
     charm: "cs:trusty/topbeat-1"
+>>>>>>> Stashed changes
     annotations:
       "gui-x": "819.045"
       "gui-y": "585.538"
