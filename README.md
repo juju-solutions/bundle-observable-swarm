@@ -30,6 +30,8 @@ Any of the services provided can be scaled out post-deployment. The charms suppo
 
 This sets the proper environment variables to control the cluster, you can now check the state of the cluster:
 
+*Note, before running docker commands be sure [docker](https://docs.docker.com/engine/installation) is installed on the same machine as where you are running juju client commands from.*
+
     docker status
 
 And then run a hello-world to launch a container in the cluster, and then checking to ensure that the container is running on the remote cluster:
