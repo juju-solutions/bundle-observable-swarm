@@ -1,25 +1,28 @@
 series: trusty
 services:
   filebeat:
-    charm: "cs:~containers/trusty/filebeat-5"
+    charm: "cs:trusty/filebeat-1"
     annotations:
       "gui-x": "808.188"
       "gui-y": "426.512"
   topbeat:
-    charm: "cs:~containers/trusty/topbeat-8"
+    charm: "cs:trusty/topbeat-1"
     annotations:
       "gui-x": "819.045"
       "gui-y": "585.538"
   kibana:
-    charm: "cs:~containers/trusty/kibana-1"
+    charm: "cs:trusty/kibana-12"
     num_units: 1
+    expose: true
+    options:
+      - dashboards: "beats"
     annotations:
       "gui-x": "241.817"
       "gui-y": "395.914"
     to:
       - "2"
   elasticsearch:
-    charm: "cs:trusty/elasticsearch-14"
+    charm: "cs:trusty/elasticsearch-15"
     num_units: 2
     annotations:
       "gui-x": "524.309"
@@ -28,8 +31,9 @@ services:
       - "0"
       - "1"
   swarm:
-    charm: "cs:~containers/trusty/swarm-0"
+    charm: "cs:~containers/trusty/swarm-2"
     num_units: 3
+    expose: true
     annotations:
       "gui-x": "1147.795"
       "gui-y": "643.4722"
@@ -38,7 +42,7 @@ services:
       - "7"
       - "8"
   consul:
-    charm: "cs:~containers/trusty/consul-0"
+    charm: "cs:~containers/trusty/consul-1"
     num_units: 3
     annotations:
       "gui-x": "1153.579"
