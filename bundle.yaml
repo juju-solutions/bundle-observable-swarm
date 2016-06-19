@@ -1,98 +1,77 @@
-series: trusty
+series: xenial
 services:
-  filebeat:
-    charm: "cs:trusty/filebeat-1"
-    annotations:
-      "gui-x": "808.188"
-      "gui-y": "426.512"
-  topbeat:
-    charm: "cs:trusty/topbeat-1"
-    annotations:
-      "gui-x": "819.045"
-      "gui-y": "585.538"
   kibana:
-    charm: "cs:trusty/kibana-12"
+    charm: "cs:~lazypower/trusty/kibana-0"
     num_units: 1
-    expose: true
     options:
-      - dashboards: "beats"
+      dashboards: beats
+    expose: true
     annotations:
-      "gui-x": "241.817"
-      "gui-y": "395.914"
-    to:
-      - "2"
+      "gui-x": "985"
+      "gui-y": "580"
   elasticsearch:
     charm: "cs:trusty/elasticsearch-15"
-    num_units: 2
+    num_units: 1
     annotations:
-      "gui-x": "524.309"
-      "gui-y": "403.205"
-    to:
-      - "0"
-      - "1"
+      "gui-x": "670"
+      "gui-y": "580"
   swarm:
-    charm: "cs:~containers/trusty/swarm-2"
-    num_units: 3
+    charm: "cs:swarm-1"
+    num_units: 2
     expose: true
     annotations:
-      "gui-x": "1147.795"
-      "gui-y": "643.4722"
-    to:
-      - "6"
-      - "7"
-      - "8"
+      "gui-x": "-170"
+      "gui-y": "380"
+  dockerbeat:
+    charm: "cs:~containers/dockerbeat-0"
+    annotations:
+      "gui-x": "360"
+      "gui-y": "300"
+  topbeat:
+    charm: "cs:trusty/topbeat-2"
+    annotations:
+      "gui-x": "360"
+      "gui-y": "690"
+  filebeat:
+    charm: "cs:trusty/filebeat-2"
+    annotations:
+      "gui-x": "360"
+      "gui-y": "490"
+  packetbeat:
+    charm: "cs:~containers/packetbeat-4"
+    annotations:
+      "gui-x": "360"
+      "gui-y": "900"
   consul:
     charm: "cs:~containers/trusty/consul-1"
-    num_units: 3
+    num_units: 1
+    options:
+      "bootstrap-expect": 1
     annotations:
-      "gui-x": "1153.579"
-      "gui-y": "393.138"
-    to:
-      - "3"
-      - "4"
-      - "5"
+      "gui-x": "-170"
+      "gui-y": "780"
 relations:
-  - - "kibana:rest"
-    - "elasticsearch:client"
-  - - "filebeat:elasticsearch"
-    - "elasticsearch:client"
-  - - "topbeat:elasticsearch"
+  - - "packetbeat:beats-host"
+    - "consul:juju-info"
+  - - "dockerbeat:beats-host"
+    - "swarm:juju-info"
+  - - "dockerbeat:elasticsearch"
     - "elasticsearch:client"
   - - "swarm:consul"
     - "consul:api"
-  - - "filebeat:beats-host"
-    - "consul:juju-info"
+  - - "topbeat:elasticsearch"
+    - "elasticsearch:client"
+  - - "filebeat:elasticsearch"
+    - "elasticsearch:client"
   - - "filebeat:beats-host"
     - "swarm:juju-info"
   - - "topbeat:beats-host"
-    - "consul:juju-info"
-  - - "topbeat:beats-host"
     - "swarm:juju-info"
-machines:
-  "0":
-    series: trusty
-    constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=8192 root-disk=30720"
-  "1":
-    series: trusty
-    constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=8192 root-disk=30720"
-  "2":
-    series: trusty
-    constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=1740 root-disk=8192"
-  "3":
-    series: trusty
-    constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=1740 root-disk=8192"
-  "4":
-    series: trusty
-    constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=1740 root-disk=8192"
-  "5":
-    series: trusty
-    constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=1740 root-disk=8192"
-  "6":
-    series: trusty
-    constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=1740 root-disk=30720"
-  "7":
-    series: trusty
-    constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=1740 root-disk=30720"
-  "8":
-    series: trusty
-    constraints: "arch=amd64 cpu-cores=1 cpu-power=100 mem=1740 root-disk=30720"
+  - - "topbeat:beats-host"
+    - "consul:juju-info"
+  - - "kibana:rest"
+    - "elasticsearch:client"
+  - - "filebeat:beats-host"
+    - "consul:juju-info"
+  - - "packetbeat:elasticsearch"
+    - "elasticsearch:client"
