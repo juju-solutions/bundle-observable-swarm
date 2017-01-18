@@ -15,7 +15,7 @@ services:
     num_units: 1
     expose: true
     options:
-      - dashboards: "beats"
+      dashboards: "beats"
     annotations:
       "gui-x": "241.817"
       "gui-y": "395.914"
