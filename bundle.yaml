@@ -42,7 +42,7 @@ services:
       - "7"
       - "8"
   consul:
-    charm: "cs:~containers/trusty/consul-1"
+    charm: "cs:~containers/trusty/consul-2"
     num_units: 3
     annotations:
       "gui-x": "1153.579"
